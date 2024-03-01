@@ -18,8 +18,8 @@ type User struct {
 	config `json:"-"`
 	// ID of the ent.
 	ID uuid.UUID `json:"id,omitempty"`
-	// MailAdress holds the value of the "MailAdress" field.
-	MailAdress string `json:"MailAdress,omitempty"`
+	// MailAddress holds the value of the "MailAddress" field.
+	MailAddress string `json:"MailAddress,omitempty"`
 	// HandleName holds the value of the "HandleName" field.
 	HandleName string `json:"HandleName,omitempty"`
 	// Name holds the value of the "Name" field.
@@ -61,7 +61,7 @@ func (*User) scanValues(columns []string) ([]any, error) {
 	values := make([]any, len(columns))
 	for i := range columns {
 		switch columns[i] {
-		case user.FieldMailAdress, user.FieldHandleName, user.FieldName, user.FieldHashedPassword, user.FieldDepartment:
+		case user.FieldMailAddress, user.FieldHandleName, user.FieldName, user.FieldHashedPassword, user.FieldDepartment:
 			values[i] = new(sql.NullString)
 		case user.FieldCreatedAt, user.FieldUpdatedAt:
 			values[i] = new(sql.NullTime)
@@ -88,11 +88,11 @@ func (u *User) assignValues(columns []string, values []any) error {
 			} else if value != nil {
 				u.ID = *value
 			}
-		case user.FieldMailAdress:
+		case user.FieldMailAddress:
 			if value, ok := values[i].(*sql.NullString); !ok {
-				return fmt.Errorf("unexpected type %T for field MailAdress", values[i])
+				return fmt.Errorf("unexpected type %T for field MailAddress", values[i])
 			} else if value.Valid {
-				u.MailAdress = value.String
+				u.MailAddress = value.String
 			}
 		case user.FieldHandleName:
 			if value, ok := values[i].(*sql.NullString); !ok {
@@ -171,8 +171,8 @@ func (u *User) String() string {
 	var builder strings.Builder
 	builder.WriteString("User(")
 	builder.WriteString(fmt.Sprintf("id=%v, ", u.ID))
-	builder.WriteString("MailAdress=")
-	builder.WriteString(u.MailAdress)
+	builder.WriteString("MailAddress=")
+	builder.WriteString(u.MailAddress)
 	builder.WriteString(", ")
 	builder.WriteString("HandleName=")
 	builder.WriteString(u.HandleName)

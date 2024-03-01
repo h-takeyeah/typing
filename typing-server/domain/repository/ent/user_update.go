@@ -30,16 +30,16 @@ func (uu *UserUpdate) Where(ps ...predicate.User) *UserUpdate {
 	return uu
 }
 
-// SetMailAdress sets the "MailAdress" field.
-func (uu *UserUpdate) SetMailAdress(s string) *UserUpdate {
-	uu.mutation.SetMailAdress(s)
+// SetMailAddress sets the "MailAddress" field.
+func (uu *UserUpdate) SetMailAddress(s string) *UserUpdate {
+	uu.mutation.SetMailAddress(s)
 	return uu
 }
 
-// SetNillableMailAdress sets the "MailAdress" field if the given value is not nil.
-func (uu *UserUpdate) SetNillableMailAdress(s *string) *UserUpdate {
+// SetNillableMailAddress sets the "MailAddress" field if the given value is not nil.
+func (uu *UserUpdate) SetNillableMailAddress(s *string) *UserUpdate {
 	if s != nil {
-		uu.SetMailAdress(*s)
+		uu.SetMailAddress(*s)
 	}
 	return uu
 }
@@ -185,9 +185,9 @@ func (uu *UserUpdate) defaults() {
 
 // check runs all checks and user-defined validators on the builder.
 func (uu *UserUpdate) check() error {
-	if v, ok := uu.mutation.MailAdress(); ok {
-		if err := user.MailAdressValidator(v); err != nil {
-			return &ValidationError{Name: "MailAdress", err: fmt.Errorf(`ent: validator failed for field "User.MailAdress": %w`, err)}
+	if v, ok := uu.mutation.MailAddress(); ok {
+		if err := user.MailAddressValidator(v); err != nil {
+			return &ValidationError{Name: "MailAddress", err: fmt.Errorf(`ent: validator failed for field "User.MailAddress": %w`, err)}
 		}
 	}
 	if v, ok := uu.mutation.HandleName(); ok {
@@ -225,8 +225,8 @@ func (uu *UserUpdate) sqlSave(ctx context.Context) (n int, err error) {
 			}
 		}
 	}
-	if value, ok := uu.mutation.MailAdress(); ok {
-		_spec.SetField(user.FieldMailAdress, field.TypeString, value)
+	if value, ok := uu.mutation.MailAddress(); ok {
+		_spec.SetField(user.FieldMailAddress, field.TypeString, value)
 	}
 	if value, ok := uu.mutation.HandleName(); ok {
 		_spec.SetField(user.FieldHandleName, field.TypeString, value)
@@ -308,16 +308,16 @@ type UserUpdateOne struct {
 	mutation *UserMutation
 }
 
-// SetMailAdress sets the "MailAdress" field.
-func (uuo *UserUpdateOne) SetMailAdress(s string) *UserUpdateOne {
-	uuo.mutation.SetMailAdress(s)
+// SetMailAddress sets the "MailAddress" field.
+func (uuo *UserUpdateOne) SetMailAddress(s string) *UserUpdateOne {
+	uuo.mutation.SetMailAddress(s)
 	return uuo
 }
 
-// SetNillableMailAdress sets the "MailAdress" field if the given value is not nil.
-func (uuo *UserUpdateOne) SetNillableMailAdress(s *string) *UserUpdateOne {
+// SetNillableMailAddress sets the "MailAddress" field if the given value is not nil.
+func (uuo *UserUpdateOne) SetNillableMailAddress(s *string) *UserUpdateOne {
 	if s != nil {
-		uuo.SetMailAdress(*s)
+		uuo.SetMailAddress(*s)
 	}
 	return uuo
 }
@@ -476,9 +476,9 @@ func (uuo *UserUpdateOne) defaults() {
 
 // check runs all checks and user-defined validators on the builder.
 func (uuo *UserUpdateOne) check() error {
-	if v, ok := uuo.mutation.MailAdress(); ok {
-		if err := user.MailAdressValidator(v); err != nil {
-			return &ValidationError{Name: "MailAdress", err: fmt.Errorf(`ent: validator failed for field "User.MailAdress": %w`, err)}
+	if v, ok := uuo.mutation.MailAddress(); ok {
+		if err := user.MailAddressValidator(v); err != nil {
+			return &ValidationError{Name: "MailAddress", err: fmt.Errorf(`ent: validator failed for field "User.MailAddress": %w`, err)}
 		}
 	}
 	if v, ok := uuo.mutation.HandleName(); ok {
@@ -533,8 +533,8 @@ func (uuo *UserUpdateOne) sqlSave(ctx context.Context) (_node *User, err error) 
 			}
 		}
 	}
-	if value, ok := uuo.mutation.MailAdress(); ok {
-		_spec.SetField(user.FieldMailAdress, field.TypeString, value)
+	if value, ok := uuo.mutation.MailAddress(); ok {
+		_spec.SetField(user.FieldMailAddress, field.TypeString, value)
 	}
 	if value, ok := uuo.mutation.HandleName(); ok {
 		_spec.SetField(user.FieldHandleName, field.TypeString, value)

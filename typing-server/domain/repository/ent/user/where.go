@@ -56,9 +56,9 @@ func IDLTE(id uuid.UUID) predicate.User {
 	return predicate.User(sql.FieldLTE(FieldID, id))
 }
 
-// MailAdress applies equality check predicate on the "MailAdress" field. It's identical to MailAdressEQ.
-func MailAdress(v string) predicate.User {
-	return predicate.User(sql.FieldEQ(FieldMailAdress, v))
+// MailAddress applies equality check predicate on the "MailAddress" field. It's identical to MailAddressEQ.
+func MailAddress(v string) predicate.User {
+	return predicate.User(sql.FieldEQ(FieldMailAddress, v))
 }
 
 // HandleName applies equality check predicate on the "HandleName" field. It's identical to HandleNameEQ.
@@ -86,69 +86,69 @@ func UpdatedAt(v time.Time) predicate.User {
 	return predicate.User(sql.FieldEQ(FieldUpdatedAt, v))
 }
 
-// MailAdressEQ applies the EQ predicate on the "MailAdress" field.
-func MailAdressEQ(v string) predicate.User {
-	return predicate.User(sql.FieldEQ(FieldMailAdress, v))
+// MailAddressEQ applies the EQ predicate on the "MailAddress" field.
+func MailAddressEQ(v string) predicate.User {
+	return predicate.User(sql.FieldEQ(FieldMailAddress, v))
 }
 
-// MailAdressNEQ applies the NEQ predicate on the "MailAdress" field.
-func MailAdressNEQ(v string) predicate.User {
-	return predicate.User(sql.FieldNEQ(FieldMailAdress, v))
+// MailAddressNEQ applies the NEQ predicate on the "MailAddress" field.
+func MailAddressNEQ(v string) predicate.User {
+	return predicate.User(sql.FieldNEQ(FieldMailAddress, v))
 }
 
-// MailAdressIn applies the In predicate on the "MailAdress" field.
-func MailAdressIn(vs ...string) predicate.User {
-	return predicate.User(sql.FieldIn(FieldMailAdress, vs...))
+// MailAddressIn applies the In predicate on the "MailAddress" field.
+func MailAddressIn(vs ...string) predicate.User {
+	return predicate.User(sql.FieldIn(FieldMailAddress, vs...))
 }
 
-// MailAdressNotIn applies the NotIn predicate on the "MailAdress" field.
-func MailAdressNotIn(vs ...string) predicate.User {
-	return predicate.User(sql.FieldNotIn(FieldMailAdress, vs...))
+// MailAddressNotIn applies the NotIn predicate on the "MailAddress" field.
+func MailAddressNotIn(vs ...string) predicate.User {
+	return predicate.User(sql.FieldNotIn(FieldMailAddress, vs...))
 }
 
-// MailAdressGT applies the GT predicate on the "MailAdress" field.
-func MailAdressGT(v string) predicate.User {
-	return predicate.User(sql.FieldGT(FieldMailAdress, v))
+// MailAddressGT applies the GT predicate on the "MailAddress" field.
+func MailAddressGT(v string) predicate.User {
+	return predicate.User(sql.FieldGT(FieldMailAddress, v))
 }
 
-// MailAdressGTE applies the GTE predicate on the "MailAdress" field.
-func MailAdressGTE(v string) predicate.User {
-	return predicate.User(sql.FieldGTE(FieldMailAdress, v))
+// MailAddressGTE applies the GTE predicate on the "MailAddress" field.
+func MailAddressGTE(v string) predicate.User {
+	return predicate.User(sql.FieldGTE(FieldMailAddress, v))
 }
 
-// MailAdressLT applies the LT predicate on the "MailAdress" field.
-func MailAdressLT(v string) predicate.User {
-	return predicate.User(sql.FieldLT(FieldMailAdress, v))
+// MailAddressLT applies the LT predicate on the "MailAddress" field.
+func MailAddressLT(v string) predicate.User {
+	return predicate.User(sql.FieldLT(FieldMailAddress, v))
 }
 
-// MailAdressLTE applies the LTE predicate on the "MailAdress" field.
-func MailAdressLTE(v string) predicate.User {
-	return predicate.User(sql.FieldLTE(FieldMailAdress, v))
+// MailAddressLTE applies the LTE predicate on the "MailAddress" field.
+func MailAddressLTE(v string) predicate.User {
+	return predicate.User(sql.FieldLTE(FieldMailAddress, v))
 }
 
-// MailAdressContains applies the Contains predicate on the "MailAdress" field.
-func MailAdressContains(v string) predicate.User {
-	return predicate.User(sql.FieldContains(FieldMailAdress, v))
+// MailAddressContains applies the Contains predicate on the "MailAddress" field.
+func MailAddressContains(v string) predicate.User {
+	return predicate.User(sql.FieldContains(FieldMailAddress, v))
 }
 
-// MailAdressHasPrefix applies the HasPrefix predicate on the "MailAdress" field.
-func MailAdressHasPrefix(v string) predicate.User {
-	return predicate.User(sql.FieldHasPrefix(FieldMailAdress, v))
+// MailAddressHasPrefix applies the HasPrefix predicate on the "MailAddress" field.
+func MailAddressHasPrefix(v string) predicate.User {
+	return predicate.User(sql.FieldHasPrefix(FieldMailAddress, v))
 }
 
-// MailAdressHasSuffix applies the HasSuffix predicate on the "MailAdress" field.
-func MailAdressHasSuffix(v string) predicate.User {
-	return predicate.User(sql.FieldHasSuffix(FieldMailAdress, v))
+// MailAddressHasSuffix applies the HasSuffix predicate on the "MailAddress" field.
+func MailAddressHasSuffix(v string) predicate.User {
+	return predicate.User(sql.FieldHasSuffix(FieldMailAddress, v))
 }
 
-// MailAdressEqualFold applies the EqualFold predicate on the "MailAdress" field.
-func MailAdressEqualFold(v string) predicate.User {
-	return predicate.User(sql.FieldEqualFold(FieldMailAdress, v))
+// MailAddressEqualFold applies the EqualFold predicate on the "MailAddress" field.
+func MailAddressEqualFold(v string) predicate.User {
+	return predicate.User(sql.FieldEqualFold(FieldMailAddress, v))
 }
 
-// MailAdressContainsFold applies the ContainsFold predicate on the "MailAdress" field.
-func MailAdressContainsFold(v string) predicate.User {
-	return predicate.User(sql.FieldContainsFold(FieldMailAdress, v))
+// MailAddressContainsFold applies the ContainsFold predicate on the "MailAddress" field.
+func MailAddressContainsFold(v string) predicate.User {
+	return predicate.User(sql.FieldContainsFold(FieldMailAddress, v))
 }
 
 // HandleNameEQ applies the EQ predicate on the "HandleName" field.

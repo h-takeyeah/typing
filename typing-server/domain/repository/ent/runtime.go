@@ -23,18 +23,18 @@ func init() {
 	score.DefaultID = scoreDescID.Default.(func() uuid.UUID)
 	userFields := schema.User{}.Fields()
 	_ = userFields
-	// userDescMailAdress is the schema descriptor for MailAdress field.
-	userDescMailAdress := userFields[1].Descriptor()
-	// user.MailAdressValidator is a validator for the "MailAdress" field. It is called by the builders before save.
-	user.MailAdressValidator = func() func(string) error {
-		validators := userDescMailAdress.Validators
+	// userDescMailAddress is the schema descriptor for MailAddress field.
+	userDescMailAddress := userFields[1].Descriptor()
+	// user.MailAddressValidator is a validator for the "MailAddress" field. It is called by the builders before save.
+	user.MailAddressValidator = func() func(string) error {
+		validators := userDescMailAddress.Validators
 		fns := [...]func(string) error{
 			validators[0].(func(string) error),
 			validators[1].(func(string) error),
 		}
-		return func(_MailAdress string) error {
+		return func(_MailAddress string) error {
 			for _, fn := range fns {
-				if err := fn(_MailAdress); err != nil {
+				if err := fn(_MailAddress); err != nil {
 					return err
 				}
 			}

@@ -35,7 +35,7 @@ var (
 	// UsersColumns holds the columns for the "users" table.
 	UsersColumns = []*schema.Column{
 		{Name: "id", Type: field.TypeUUID, Unique: true},
-		{Name: "mail_adress", Type: field.TypeString, Size: 255},
+		{Name: "mail_address", Type: field.TypeString, Size: 255},
 		{Name: "handle_name", Type: field.TypeString, Size: 36},
 		{Name: "name", Type: field.TypeString, Size: 36},
 		{Name: "hashed_password", Type: field.TypeString, Size: 255},

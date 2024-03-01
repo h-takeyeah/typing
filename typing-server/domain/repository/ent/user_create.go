@@ -22,9 +22,9 @@ type UserCreate struct {
 	hooks    []Hook
 }
 
-// SetMailAdress sets the "MailAdress" field.
-func (uc *UserCreate) SetMailAdress(s string) *UserCreate {
-	uc.mutation.SetMailAdress(s)
+// SetMailAddress sets the "MailAddress" field.
+func (uc *UserCreate) SetMailAddress(s string) *UserCreate {
+	uc.mutation.SetMailAddress(s)
 	return uc
 }
 
@@ -160,12 +160,12 @@ func (uc *UserCreate) defaults() {
 
 // check runs all checks and user-defined validators on the builder.
 func (uc *UserCreate) check() error {
-	if _, ok := uc.mutation.MailAdress(); !ok {
-		return &ValidationError{Name: "MailAdress", err: errors.New(`ent: missing required field "User.MailAdress"`)}
+	if _, ok := uc.mutation.MailAddress(); !ok {
+		return &ValidationError{Name: "MailAddress", err: errors.New(`ent: missing required field "User.MailAddress"`)}
 	}
-	if v, ok := uc.mutation.MailAdress(); ok {
-		if err := user.MailAdressValidator(v); err != nil {
-			return &ValidationError{Name: "MailAdress", err: fmt.Errorf(`ent: validator failed for field "User.MailAdress": %w`, err)}
+	if v, ok := uc.mutation.MailAddress(); ok {
+		if err := user.MailAddressValidator(v); err != nil {
+			return &ValidationError{Name: "MailAddress", err: fmt.Errorf(`ent: validator failed for field "User.MailAddress": %w`, err)}
 		}
 	}
 	if _, ok := uc.mutation.HandleName(); !ok {
@@ -241,9 +241,9 @@ func (uc *UserCreate) createSpec() (*User, *sqlgraph.CreateSpec) {
 		_node.ID = id
 		_spec.ID.Value = &id
 	}
-	if value, ok := uc.mutation.MailAdress(); ok {
-		_spec.SetField(user.FieldMailAdress, field.TypeString, value)
-		_node.MailAdress = value
+	if value, ok := uc.mutation.MailAddress(); ok {
+		_spec.SetField(user.FieldMailAddress, field.TypeString, value)
+		_node.MailAddress = value
 	}
 	if value, ok := uc.mutation.HandleName(); ok {
 		_spec.SetField(user.FieldHandleName, field.TypeString, value)

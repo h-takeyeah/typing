@@ -16,8 +16,8 @@ const (
 	Label = "user"
 	// FieldID holds the string denoting the id field in the database.
 	FieldID = "id"
-	// FieldMailAdress holds the string denoting the mailadress field in the database.
-	FieldMailAdress = "mail_adress"
+	// FieldMailAddress holds the string denoting the mailaddress field in the database.
+	FieldMailAddress = "mail_address"
 	// FieldHandleName holds the string denoting the handlename field in the database.
 	FieldHandleName = "handle_name"
 	// FieldName holds the string denoting the name field in the database.
@@ -46,7 +46,7 @@ const (
 // Columns holds all SQL columns for user fields.
 var Columns = []string{
 	FieldID,
-	FieldMailAdress,
+	FieldMailAddress,
 	FieldHandleName,
 	FieldName,
 	FieldHashedPassword,
@@ -66,8 +66,8 @@ func ValidColumn(column string) bool {
 }
 
 var (
-	// MailAdressValidator is a validator for the "MailAdress" field. It is called by the builders before save.
-	MailAdressValidator func(string) error
+	// MailAddressValidator is a validator for the "MailAddress" field. It is called by the builders before save.
+	MailAddressValidator func(string) error
 	// HandleNameValidator is a validator for the "HandleName" field. It is called by the builders before save.
 	HandleNameValidator func(string) error
 	// NameValidator is a validator for the "Name" field. It is called by the builders before save.
@@ -116,9 +116,9 @@ func ByID(opts ...sql.OrderTermOption) OrderOption {
 	return sql.OrderByField(FieldID, opts...).ToFunc()
 }
 
-// ByMailAdress orders the results by the MailAdress field.
-func ByMailAdress(opts ...sql.OrderTermOption) OrderOption {
-	return sql.OrderByField(FieldMailAdress, opts...).ToFunc()
+// ByMailAddress orders the results by the MailAddress field.
+func ByMailAddress(opts ...sql.OrderTermOption) OrderOption {
+	return sql.OrderByField(FieldMailAddress, opts...).ToFunc()
 }
 
 // ByHandleName orders the results by the HandleName field.
