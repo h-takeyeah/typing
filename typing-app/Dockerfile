@@ -26,6 +26,7 @@ RUN npm run build
 FROM base
 ENV NODE_ENV production
 ENV NEXT_TELEMETRY_DISABLED 1
+ENV PORT 3000
 WORKDIR /app
 EXPOSE 3000
 RUN groupadd --gid 1001 node \
