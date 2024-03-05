@@ -1,6 +1,6 @@
 FROM node:20.11-slim as node
 FROM ubuntu:mantic-20240122 as base
-### https://github.com/BretFisher/nodejs-rocks-in-docker/blob/bf74b58efc87fda635e58288fe280cf4ce2cae9c/dockerfiles/ubuntu-copy.Dockerfile
+# https://github.com/BretFisher/nodejs-rocks-in-docker/blob/bf74b58efc87fda635e58288fe280cf4ce2cae9c/dockerfiles/ubuntu-copy.Dockerfile
 
 # replace npm in CMD with tini for better kernel signal handling
 RUN apt-get update \
