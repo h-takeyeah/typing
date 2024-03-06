@@ -1,6 +1,6 @@
 FROM node:20.11-slim as builder
 WORKDIR /app
-COPY package*.json .
+COPY package*.json ./
 RUN npm ci && npm cache clean --force
 
 COPY . .
