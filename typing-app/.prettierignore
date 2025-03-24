@@ -6,3 +6,7 @@ bun.lockb
 .eslintrc.json
 eslint.config.js
 package-lock.json
+yarn.lock
+
+# 自動生成のファイル
+src/libs/api/*.d.ts

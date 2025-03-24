@@ -5,23 +5,26 @@ services:
         condition: service_healthy
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.dev
     volumes:
       - ./api:/app
+    environment:
+      DB_ADDR: ${DB_ADDR:-db:3306}
+      DEV_MODE: true
+      ENVIRONMENT: local
     ports:
       - "8080:8080"
     networks:
       app_net:
-        ipv4_address: '172.28.1.3'
+        ipv4_address: "172.28.1.3"
     extra_hosts:
-      - 'db:172.28.1.5'
+      - "db:172.28.1.5"
   db:
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
       interval: 10s
       retries: 10
       start_period: 30s
-
     image: mysql:8.3.0
     environment:
       MYSQL_DATABASE: typing-db
@@ -34,7 +37,22 @@ services:
       - db-data:/var/lib/mysql
     networks:
       app_net:
-        ipv4_address: '172.28.1.5'
+        ipv4_address: "172.28.1.5"
+  seed:
+    depends_on:
+      db:
+        condition: service_healthy
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    environment:
+      DB_ADDR: db:3306
+      DEV_MODE: true
+      ENVIRONMENT: local
+    command: ["./seed", "-users", "300", "-scores", "3", "-minKeystrokes", "120", "-minAccuracy", "0.95", "-concurrent", "10"]
+    networks:
+      app_net:
+        ipv4_address: "172.28.1.4"
 volumes:
   db-data:
 networks:

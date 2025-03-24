@@ -1,3 +1,6 @@
-.git/
+.dockerignore
 .next
-node_modules/
+.yarn
+docs
+node_modules
+README.md
