@@ -4,6 +4,12 @@ on:
   push:
     tags:
       - 'v*'
+  workflow_dispatch:
+    inputs:
+      debugtag:
+        type: string
+        required: true
+        description: 'tag for debugging'
 
 permissions:
   contents: read
@@ -30,6 +36,7 @@ jobs:
         uses: docker/metadata-action@v5
         with:
           tags: |
+            type=raw,value=${{ github.event.inputs.debugtag }},enabled=${{ github.event_name == 'workflow_dispatch' }}
             type=edge
             type=semver,pattern={{version}}
         env:
