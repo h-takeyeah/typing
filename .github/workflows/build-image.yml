@@ -2,8 +2,6 @@ name: Build / Push Docker Image to Registry
 
 on:
   push:
-    tags:
-      - 'v*'
   workflow_dispatch:
     inputs:
       debugtag:
