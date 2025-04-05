@@ -98,3 +98,6 @@ jobs:
             cwd://${{ runner.temp }}/bake-meta.json
           push: true
           targets: ${{ matrix.target }}
+          set: |
+            ${{ matrix.target }}.cache-from=type=gha,scope=buildcache=${{ matrix.target }}
+            ${{ matrix.target }}.cache-to=type=gha,scope=buildcache=${{ matrix.target }},mode=max
