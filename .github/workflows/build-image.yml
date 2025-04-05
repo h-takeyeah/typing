@@ -35,9 +35,7 @@ jobs:
         with:
           # tags input must be changed after finishing test
           tags: |
-            type=raw,value=${{ github.event.inputs.debugtag }}
-            type=edge
-            type=semver,pattern={{version}}
+            type=sha
         env:
           DOCKER_METADATA_ANNOTATIONS_LEVELS: index,manifest
       - name: Rename meta bake definition file
