@@ -1,7 +1,7 @@
 name: Build / Push Docker Image to Registry
 
 on:
-  push:
+  #push: # push is ommited because it always fails without tag
   workflow_dispatch:
     inputs:
       debugtag:
@@ -25,7 +25,7 @@ jobs:
         id: targets
         working-directory: docker
         run: |
-          echo "matrix=$(docker buildx bake --file docker-bake.hcl --print | jq -cr '.group.default.targets')" >> ${GITHUB_OUTPUT}
+          echo "matrix=$(docker buildx bake --file docker-bake.hcl --print | jq -cr '.target | keys')" >> ${GITHUB_OUTPUT}
       - name: Show matrix
         run: |
           echo ${{ steps.targets.outputs.matrix }}
@@ -33,10 +33,11 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
+          # tags input must be changed after finishing test
           tags: |
-            type=raw,value=${{ github.event.inputs.debugtag }},enable=${{ github.event_name == 'workflow_dispatch' }}
+            type=raw,value=${{ github.event.inputs.debugtag }}
             type=edge
-            type=semver,pattern={{version}}
+            type=semver
         env:
           DOCKER_METADATA_ANNOTATIONS_LEVELS: index,manifest
       - name: Rename meta bake definition file
