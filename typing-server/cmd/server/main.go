@@ -2,9 +2,12 @@ package main
 
 import (
 	"context"
+	"database/sql"
 	"net/http"
 	"time"
+	_ "time/tzdata"
 
+	entsql "entgo.io/ent/dialect/sql"
 	"github.com/go-sql-driver/mysql"
 	"github.com/su-its/typing/typing-server/config"
 	"github.com/su-its/typing/typing-server/internal/domain/service"
@@ -16,6 +19,26 @@ import (
 	"github.com/su-its/typing/typing-server/pkg/logger"
 	"github.com/su-its/typing/typing-server/pkg/middleware"
 )
+
+func connectToDB(dialect string, datasourceName string) (*ent_generated.Client, error) {
+	maxRetry := 10
+	db, err := sql.Open(dialect, datasourceName)
+	if err != nil {
+		return nil, err
+	}
+	for r := 1; r <= maxRetry; r++ {
+		if _, err := db.Query("select now()"); err != nil {
+			if r == maxRetry {
+				return nil, err
+			}
+			time.Sleep(1 * time.Second)
+		} else {
+			break
+		}
+	}
+	drv := entsql.OpenDB(dialect, db)
+	return ent_generated.NewClient(ent_generated.Driver(drv)), nil
+}
 
 func main() {
 	log := logger.New()
@@ -46,7 +69,7 @@ func main() {
 		"config", mysqlConfig.FormatDSN())
 
 	// entクライアントの初期化
-	entClient, err := ent_generated.Open("mysql", mysqlConfig.FormatDSN())
+	entClient, err := connectToDB("mysql", mysqlConfig.FormatDSN())
 	if err != nil {
 		log.Error("failed to open database connection",
 			"error", err,
