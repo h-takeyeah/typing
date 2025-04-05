@@ -37,7 +37,7 @@ jobs:
           tags: |
             type=raw,value=${{ github.event.inputs.debugtag }}
             type=edge
-            type=semver
+            type=semver,pattern={{version}}
         env:
           DOCKER_METADATA_ANNOTATIONS_LEVELS: index,manifest
       - name: Rename meta bake definition file
