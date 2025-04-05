@@ -30,6 +30,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
       # FIXME: できることなら NEXT_PUBLIC_ は使いたくない
       - name: Prepare environment variable file
+        if: matrix.target == 'app'
         working-directory: typing-app
         run: echo 'NEXT_PUBLIC_API_URL=${{ secrets.PROD_NEXT_PUBLIC_API_URL }}' >> .env.production
       - name: Docker meta
