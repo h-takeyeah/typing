@@ -42,11 +42,14 @@ jobs:
       - name: Rename meta bake definition file
         run: |
           mv "${{ steps.meta.outputs.bake-file }}" "${{ runner.temp }}"/bake-meta.json
+          mv "${{ steps.meta.outputs.bake-file-annotations }}" "${{ runner.temp }}"/bake-meta-annotations.json
       - name: Upload meta bake definition
         uses: actions/upload-artifact@v4
         with:
           name: bake-mata
-          path: ${{ runner.temp }}/bake-meta.json
+          path: |
+            ${{ runner.temp }}/bake-meta.json
+            ${{ runner.temp }}/bake-meta-annotations.json
           if-no-files-found: error
           retention-days: 1
 
@@ -90,6 +93,7 @@ jobs:
           workdir: docker
           files: |
             docker-bake.hcl
+            cwd://${{ runner.temp }}/bake-meta-annotations.json
             cwd://${{ runner.temp }}/bake-meta.json
           push: true
           targets: ${{ matrix.target }}
