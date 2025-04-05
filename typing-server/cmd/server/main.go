@@ -21,7 +21,7 @@ import (
 )
 
 func connectToDB(dialect string, datasourceName string) (*ent_generated.Client, error) {
-	maxRetry := 10
+	maxRetry := 5
 	db, err := sql.Open(dialect, datasourceName)
 	if err != nil {
 		return nil, err
